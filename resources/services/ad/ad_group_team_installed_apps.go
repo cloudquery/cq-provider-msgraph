@@ -10,12 +10,12 @@ import (
 
 func AdGroupsTeamInstalledApps() *schema.Table {
 	return &schema.Table{
-		Name:     "azure_ad_group_team_installed_apps",
+		Name:     "msgraph_ad_group_team_installed_apps",
 		Resolver: fetchAdGroupTeamInstalledApps,
 		Columns: []schema.Column{
 			{
 				Name:        "group_cq_id",
-				Description: "Unique CloudQuery ID of azure_ad_groups table (FK)",
+				Description: "Unique CloudQuery ID of msgraph_ad_groups table (FK)",
 				Type:        schema.TypeUUID,
 				Resolver:    schema.ParentIdResolver,
 			},
@@ -67,12 +67,12 @@ func AdGroupsTeamInstalledApps() *schema.Table {
 		},
 		Relations: []*schema.Table{
 			{
-				Name:     "azure_ad_group_team_installed_app_teams_app_app_definitions",
+				Name:     "msgraph_ad_group_team_installed_app_teams_app_app_definitions",
 				Resolver: fetchAdGroupTeamInstalledAppTeamsAppAppDefinitions,
 				Columns: []schema.Column{
 					{
 						Name:        "group_team_installed_app_cq_id",
-						Description: "Unique CloudQuery ID of azure_ad_group_team_installed_apps table (FK)",
+						Description: "Unique CloudQuery ID of msgraph_ad_group_team_installed_apps table (FK)",
 						Type:        schema.TypeUUID,
 						Resolver:    schema.ParentIdResolver,
 					},

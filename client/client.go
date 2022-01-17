@@ -16,7 +16,7 @@ type Client struct {
 	TenantId string
 }
 
-func NewAzureClient(log hclog.Logger, tenantId string, graph *msgraph.GraphServiceRequestBuilder) *Client {
+func NewMsgraphClient(log hclog.Logger, tenantId string, graph *msgraph.GraphServiceRequestBuilder) *Client {
 	return &Client{
 		logger:   log,
 		TenantId: tenantId,
@@ -39,7 +39,7 @@ func Configure(logger hclog.Logger, config interface{}) (schema.ClientMeta, erro
 		return nil, err
 	}
 
-	creds, err := settings.GetClientCredentials()
+	c, err := settings.GetClientCredentials()
 	if err != nil {
 		return nil, err
 	}
@@ -47,7 +47,7 @@ func Configure(logger hclog.Logger, config interface{}) (schema.ClientMeta, erro
 	ctx := context.Background()
 	m := msauth.NewManager()
 	scopes := []string{msauth.DefaultMSGraphScope}
-	ts, err := m.ClientCredentialsGrant(ctx, creds.TenantID, creds.ClientID, creds.ClientSecret, scopes)
+	ts, err := m.ClientCredentialsGrant(ctx, c.TenantID, c.ClientID, c.ClientSecret, scopes)
 	if err != nil {
 		return nil, err
 	}
@@ -55,7 +55,7 @@ func Configure(logger hclog.Logger, config interface{}) (schema.ClientMeta, erro
 	httpClient := oauth2.NewClient(ctx, ts)
 	graphClient := msgraph.NewClient(httpClient)
 
-	client := NewAzureClient(logger, creds.TenantID, graphClient)
+	client := NewMsgraphClient(logger, c.TenantID, graphClient)
 
 	// Return the initialized client. It will be passed to your resources
 	return client, nil

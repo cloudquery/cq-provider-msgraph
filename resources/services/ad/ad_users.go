@@ -12,16 +12,16 @@ import (
 
 func AdUsers() *schema.Table {
 	return &schema.Table{
-		Name:         "azure_ad_users",
+		Name:         "msgraph_ad_users",
 		Resolver:     fetchAdUsers,
 		DeleteFilter: client.DeleteTenantFilter,
 		Options:      schema.TableCreationOptions{PrimaryKeys: []string{"tenant_id", "id"}},
 		Columns: []schema.Column{
 			{
 				Name:        "tenant_id",
-				Description: "Azure subscription id",
+				Description: "Azure tenant id",
 				Type:        schema.TypeString,
-				Resolver:    client.ResolveAzureTannantId,
+				Resolver:    client.ResolveTenantId,
 			},
 			{
 				Name:     "id",
@@ -564,12 +564,12 @@ func AdUsers() *schema.Table {
 		},
 		Relations: []*schema.Table{
 			{
-				Name:     "azure_ad_user_assigned_licenses",
+				Name:     "msgraph_ad_user_assigned_licenses",
 				Resolver: fetchAdUserAssignedLicenses,
 				Columns: []schema.Column{
 					{
 						Name:        "user_cq_id",
-						Description: "Unique CloudQuery ID of azure_ad_users table (FK)",
+						Description: "Unique CloudQuery ID of msgraph_ad_users table (FK)",
 						Type:        schema.TypeUUID,
 						Resolver:    schema.ParentIdResolver,
 					},
@@ -585,12 +585,12 @@ func AdUsers() *schema.Table {
 				},
 			},
 			{
-				Name:     "azure_ad_user_assigned_plans",
+				Name:     "msgraph_ad_user_assigned_plans",
 				Resolver: fetchAdUserAssignedPlans,
 				Columns: []schema.Column{
 					{
 						Name:        "user_cq_id",
-						Description: "Unique CloudQuery ID of azure_ad_users table (FK)",
+						Description: "Unique CloudQuery ID of msgraph_ad_users table (FK)",
 						Type:        schema.TypeUUID,
 						Resolver:    schema.ParentIdResolver,
 					},
@@ -614,12 +614,12 @@ func AdUsers() *schema.Table {
 				},
 			},
 			{
-				Name:     "azure_ad_user_license_assignment_states",
+				Name:     "msgraph_ad_user_license_assignment_states",
 				Resolver: fetchAdUserLicenseAssignmentStates,
 				Columns: []schema.Column{
 					{
 						Name:        "user_cq_id",
-						Description: "Unique CloudQuery ID of azure_ad_users table (FK)",
+						Description: "Unique CloudQuery ID of msgraph_ad_users table (FK)",
 						Type:        schema.TypeUUID,
 						Resolver:    schema.ParentIdResolver,
 					},
@@ -647,12 +647,12 @@ func AdUsers() *schema.Table {
 				},
 			},
 			{
-				Name:     "azure_ad_user_on_premises_provisioning_errors",
+				Name:     "msgraph_ad_user_on_premises_provisioning_errors",
 				Resolver: fetchAdUserOnPremisesProvisioningErrors,
 				Columns: []schema.Column{
 					{
 						Name:        "user_cq_id",
-						Description: "Unique CloudQuery ID of azure_ad_users table (FK)",
+						Description: "Unique CloudQuery ID of msgraph_ad_users table (FK)",
 						Type:        schema.TypeUUID,
 						Resolver:    schema.ParentIdResolver,
 					},
@@ -675,12 +675,12 @@ func AdUsers() *schema.Table {
 				},
 			},
 			{
-				Name:     "azure_ad_user_provisioned_plans",
+				Name:     "msgraph_ad_user_provisioned_plans",
 				Resolver: fetchAdUserProvisionedPlans,
 				Columns: []schema.Column{
 					{
 						Name:        "user_cq_id",
-						Description: "Unique CloudQuery ID of azure_ad_users table (FK)",
+						Description: "Unique CloudQuery ID of msgraph_ad_users table (FK)",
 						Type:        schema.TypeUUID,
 						Resolver:    schema.ParentIdResolver,
 					},
@@ -699,12 +699,12 @@ func AdUsers() *schema.Table {
 				},
 			},
 			{
-				Name:     "azure_ad_user_owned_devices",
+				Name:     "msgraph_ad_user_owned_devices",
 				Resolver: fetchAdUserOwnedDevices,
 				Columns: []schema.Column{
 					{
 						Name:        "user_cq_id",
-						Description: "Unique CloudQuery ID of azure_ad_users table (FK)",
+						Description: "Unique CloudQuery ID of msgraph_ad_users table (FK)",
 						Type:        schema.TypeUUID,
 						Resolver:    schema.ParentIdResolver,
 					},
@@ -720,12 +720,12 @@ func AdUsers() *schema.Table {
 				},
 			},
 			{
-				Name:     "azure_ad_user_registered_devices",
+				Name:     "msgraph_ad_user_registered_devices",
 				Resolver: fetchAdUserRegisteredDevices,
 				Columns: []schema.Column{
 					{
 						Name:        "user_cq_id",
-						Description: "Unique CloudQuery ID of azure_ad_users table (FK)",
+						Description: "Unique CloudQuery ID of msgraph_ad_users table (FK)",
 						Type:        schema.TypeUUID,
 						Resolver:    schema.ParentIdResolver,
 					},
@@ -741,12 +741,12 @@ func AdUsers() *schema.Table {
 				},
 			},
 			{
-				Name:     "azure_ad_user_direct_reports",
+				Name:     "msgraph_ad_user_direct_reports",
 				Resolver: fetchAdUserDirectReports,
 				Columns: []schema.Column{
 					{
 						Name:        "user_cq_id",
-						Description: "Unique CloudQuery ID of azure_ad_users table (FK)",
+						Description: "Unique CloudQuery ID of msgraph_ad_users table (FK)",
 						Type:        schema.TypeUUID,
 						Resolver:    schema.ParentIdResolver,
 					},
@@ -762,12 +762,12 @@ func AdUsers() *schema.Table {
 				},
 			},
 			{
-				Name:     "azure_ad_user_member_of",
+				Name:     "msgraph_ad_user_member_of",
 				Resolver: fetchAdUserMemberOfs,
 				Columns: []schema.Column{
 					{
 						Name:        "user_cq_id",
-						Description: "Unique CloudQuery ID of azure_ad_users table (FK)",
+						Description: "Unique CloudQuery ID of msgraph_ad_users table (FK)",
 						Type:        schema.TypeUUID,
 						Resolver:    schema.ParentIdResolver,
 					},
@@ -783,12 +783,12 @@ func AdUsers() *schema.Table {
 				},
 			},
 			{
-				Name:     "azure_ad_user_created_objects",
+				Name:     "msgraph_ad_user_created_objects",
 				Resolver: fetchAdUserCreatedObjects,
 				Columns: []schema.Column{
 					{
 						Name:        "user_cq_id",
-						Description: "Unique CloudQuery ID of azure_ad_users table (FK)",
+						Description: "Unique CloudQuery ID of msgraph_ad_users table (FK)",
 						Type:        schema.TypeUUID,
 						Resolver:    schema.ParentIdResolver,
 					},
@@ -804,12 +804,12 @@ func AdUsers() *schema.Table {
 				},
 			},
 			{
-				Name:     "azure_ad_user_owned_objects",
+				Name:     "msgraph_ad_user_owned_objects",
 				Resolver: fetchAdUserOwnedObjects,
 				Columns: []schema.Column{
 					{
 						Name:        "user_cq_id",
-						Description: "Unique CloudQuery ID of azure_ad_users table (FK)",
+						Description: "Unique CloudQuery ID of msgraph_ad_users table (FK)",
 						Type:        schema.TypeUUID,
 						Resolver:    schema.ParentIdResolver,
 					},
@@ -825,12 +825,12 @@ func AdUsers() *schema.Table {
 				},
 			},
 			{
-				Name:     "azure_ad_user_license_details",
+				Name:     "msgraph_ad_user_license_details",
 				Resolver: fetchAdUserLicenseDetails,
 				Columns: []schema.Column{
 					{
 						Name:        "user_cq_id",
-						Description: "Unique CloudQuery ID of azure_ad_users table (FK)",
+						Description: "Unique CloudQuery ID of msgraph_ad_users table (FK)",
 						Type:        schema.TypeUUID,
 						Resolver:    schema.ParentIdResolver,
 					},
@@ -852,12 +852,12 @@ func AdUsers() *schema.Table {
 				},
 				Relations: []*schema.Table{
 					{
-						Name:     "azure_ad_user_license_detail_service_plans",
+						Name:     "msgraph_ad_user_license_detail_service_plans",
 						Resolver: fetchAdUserLicenseDetailServicePlans,
 						Columns: []schema.Column{
 							{
 								Name:        "user_license_detail_cq_id",
-								Description: "Unique CloudQuery ID of azure_ad_user_license_details table (FK)",
+								Description: "Unique CloudQuery ID of msgraph_ad_user_license_details table (FK)",
 								Type:        schema.TypeUUID,
 								Resolver:    schema.ParentIdResolver,
 							},
@@ -883,12 +883,12 @@ func AdUsers() *schema.Table {
 				},
 			},
 			{
-				Name:     "azure_ad_user_transitive_member_of",
+				Name:     "msgraph_ad_user_transitive_member_of",
 				Resolver: fetchAdUserTransitiveMemberOfs,
 				Columns: []schema.Column{
 					{
 						Name:        "user_cq_id",
-						Description: "Unique CloudQuery ID of azure_ad_users table (FK)",
+						Description: "Unique CloudQuery ID of msgraph_ad_users table (FK)",
 						Type:        schema.TypeUUID,
 						Resolver:    schema.ParentIdResolver,
 					},
@@ -904,12 +904,12 @@ func AdUsers() *schema.Table {
 				},
 			},
 			{
-				Name:     "azure_ad_user_people",
+				Name:     "msgraph_ad_user_people",
 				Resolver: fetchAdUserPeoples,
 				Columns: []schema.Column{
 					{
 						Name:        "user_cq_id",
-						Description: "Unique CloudQuery ID of azure_ad_users table (FK)",
+						Description: "Unique CloudQuery ID of msgraph_ad_users table (FK)",
 						Type:        schema.TypeUUID,
 						Resolver:    schema.ParentIdResolver,
 					},
@@ -987,12 +987,12 @@ func AdUsers() *schema.Table {
 				},
 				Relations: []*schema.Table{
 					{
-						Name:     "azure_ad_user_person_scored_email_addresses",
+						Name:     "msgraph_ad_user_person_scored_email_addresses",
 						Resolver: fetchAdUserPeopleScoredEmailAddresses,
 						Columns: []schema.Column{
 							{
 								Name:        "user_people_cq_id",
-								Description: "Unique CloudQuery ID of azure_ad_user_people table (FK)",
+								Description: "Unique CloudQuery ID of msgraph_ad_user_people table (FK)",
 								Type:        schema.TypeUUID,
 								Resolver:    schema.ParentIdResolver,
 							},
@@ -1016,12 +1016,12 @@ func AdUsers() *schema.Table {
 						},
 					},
 					{
-						Name:     "azure_ad_user_person_phones",
+						Name:     "msgraph_ad_user_person_phones",
 						Resolver: fetchAdUserPeoplePhones,
 						Columns: []schema.Column{
 							{
 								Name:        "user_people_cq_id",
-								Description: "Unique CloudQuery ID of azure_ad_user_people table (FK)",
+								Description: "Unique CloudQuery ID of msgraph_ad_user_people table (FK)",
 								Type:        schema.TypeUUID,
 								Resolver:    schema.ParentIdResolver,
 							},
@@ -1044,12 +1044,12 @@ func AdUsers() *schema.Table {
 						},
 					},
 					{
-						Name:     "azure_ad_user_person_postal_addresses",
+						Name:     "msgraph_ad_user_person_postal_addresses",
 						Resolver: fetchAdUserPeoplePostalAddresses,
 						Columns: []schema.Column{
 							{
 								Name:        "user_people_cq_id",
-								Description: "Unique CloudQuery ID of azure_ad_user_people table (FK)",
+								Description: "Unique CloudQuery ID of msgraph_ad_user_people table (FK)",
 								Type:        schema.TypeUUID,
 								Resolver:    schema.ParentIdResolver,
 							},
@@ -1133,12 +1133,12 @@ func AdUsers() *schema.Table {
 						},
 					},
 					{
-						Name:     "azure_ad_user_person_websites",
+						Name:     "msgraph_ad_user_person_websites",
 						Resolver: fetchAdUserPeopleWebsites,
 						Columns: []schema.Column{
 							{
 								Name:        "user_people_cq_id",
-								Description: "Unique CloudQuery ID of azure_ad_user_people table (FK)",
+								Description: "Unique CloudQuery ID of msgraph_ad_user_people table (FK)",
 								Type:        schema.TypeUUID,
 								Resolver:    schema.ParentIdResolver,
 							},
@@ -1159,12 +1159,12 @@ func AdUsers() *schema.Table {
 				},
 			},
 			{
-				Name:     "azure_ad_user_inference_classification_overrides",
+				Name:     "msgraph_ad_user_inference_classification_overrides",
 				Resolver: fetchAdUserInferenceClassificationOverrides,
 				Columns: []schema.Column{
 					{
 						Name:        "user_cq_id",
-						Description: "Unique CloudQuery ID of azure_ad_users table (FK)",
+						Description: "Unique CloudQuery ID of msgraph_ad_users table (FK)",
 						Type:        schema.TypeUUID,
 						Resolver:    schema.ParentIdResolver,
 					},
@@ -1190,12 +1190,12 @@ func AdUsers() *schema.Table {
 				},
 			},
 			{
-				Name:     "azure_ad_user_photos",
+				Name:     "msgraph_ad_user_photos",
 				Resolver: fetchAdUserPhotos,
 				Columns: []schema.Column{
 					{
 						Name:        "user_cq_id",
-						Description: "Unique CloudQuery ID of azure_ad_users table (FK)",
+						Description: "Unique CloudQuery ID of msgraph_ad_users table (FK)",
 						Type:        schema.TypeUUID,
 						Resolver:    schema.ParentIdResolver,
 					},
@@ -1215,12 +1215,12 @@ func AdUsers() *schema.Table {
 				},
 			},
 			{
-				Name:     "azure_ad_user_extensions",
+				Name:     "msgraph_ad_user_extensions",
 				Resolver: fetchAdUserExtensions,
 				Columns: []schema.Column{
 					{
 						Name:        "user_cq_id",
-						Description: "Unique CloudQuery ID of azure_ad_users table (FK)",
+						Description: "Unique CloudQuery ID of msgraph_ad_users table (FK)",
 						Type:        schema.TypeUUID,
 						Resolver:    schema.ParentIdResolver,
 					},
@@ -1234,12 +1234,12 @@ func AdUsers() *schema.Table {
 			AdUserManagedDevices(),
 			AdUserManagedAppsRegistrations(),
 			{
-				Name:     "azure_ad_user_device_management_troubleshooting_events",
+				Name:     "msgraph_ad_user_device_management_troubleshooting_events",
 				Resolver: fetchAdUserDeviceManagementTroubleshootingEvents,
 				Columns: []schema.Column{
 					{
 						Name:        "user_cq_id",
-						Description: "Unique CloudQuery ID of azure_ad_users table (FK)",
+						Description: "Unique CloudQuery ID of msgraph_ad_users table (FK)",
 						Type:        schema.TypeUUID,
 						Resolver:    schema.ParentIdResolver,
 					},

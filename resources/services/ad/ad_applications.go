@@ -9,19 +9,18 @@ import (
 	msgraph "github.com/yaegashi/msgraph.go/v1.0"
 )
 
-//todo add tenant_id instead of tenant_id
 func AdApplications() *schema.Table {
 	return &schema.Table{
-		Name:         "azure_ad_applications",
+		Name:         "msgraph_ad_applications",
 		Resolver:     fetchAdApplications,
 		DeleteFilter: client.DeleteTenantFilter,
 		Options:      schema.TableCreationOptions{PrimaryKeys: []string{"tenant_id", "id"}},
 		Columns: []schema.Column{
 			{
 				Name:        "tenant_id",
-				Description: "Azure subscription id",
+				Description: "Azure tenant id",
 				Type:        schema.TypeString,
-				Resolver:    client.ResolveAzureTannantId,
+				Resolver:    client.ResolveTenantId,
 			},
 			{
 				Name:     "id",
@@ -187,12 +186,12 @@ func AdApplications() *schema.Table {
 		},
 		Relations: []*schema.Table{
 			{
-				Name:     "azure_ad_application_add_ins",
+				Name:     "msgraph_ad_application_add_ins",
 				Resolver: fetchAdApplicationAddIns,
 				Columns: []schema.Column{
 					{
 						Name:        "application_cq_id",
-						Description: "Unique CloudQuery ID of azure_ad_applications table (FK)",
+						Description: "Unique CloudQuery ID of msgraph_ad_applications table (FK)",
 						Type:        schema.TypeUUID,
 						Resolver:    schema.ParentIdResolver,
 					},
@@ -208,12 +207,12 @@ func AdApplications() *schema.Table {
 				},
 				Relations: []*schema.Table{
 					{
-						Name:     "azure_ad_application_add_in_properties",
+						Name:     "msgraph_ad_application_add_in_properties",
 						Resolver: fetchAdApplicationAddInProperties,
 						Columns: []schema.Column{
 							{
 								Name:        "application_add_in_cq_id",
-								Description: "Unique CloudQuery ID of azure_ad_application_add_ins table (FK)",
+								Description: "Unique CloudQuery ID of msgraph_ad_application_add_ins table (FK)",
 								Type:        schema.TypeUUID,
 								Resolver:    schema.ParentIdResolver,
 							},
@@ -230,12 +229,12 @@ func AdApplications() *schema.Table {
 				},
 			},
 			{
-				Name:     "azure_ad_application_api_pre_authorized_applications",
+				Name:     "msgraph_ad_application_api_pre_authorized_applications",
 				Resolver: fetchAdApplicationApiPreAuthorizedApplications,
 				Columns: []schema.Column{
 					{
 						Name:        "application_cq_id",
-						Description: "Unique CloudQuery ID of azure_ad_applications table (FK)",
+						Description: "Unique CloudQuery ID of msgraph_ad_applications table (FK)",
 						Type:        schema.TypeUUID,
 						Resolver:    schema.ParentIdResolver,
 					},
@@ -252,12 +251,12 @@ func AdApplications() *schema.Table {
 				},
 			},
 			{
-				Name:     "azure_ad_application_api_oauth_2_permission_scopes",
+				Name:     "msgraph_ad_application_api_oauth_2_permission_scopes",
 				Resolver: fetchAdApplicationApiOauth2PermissionScopes,
 				Columns: []schema.Column{
 					{
 						Name:        "application_cq_id",
-						Description: "Unique CloudQuery ID of azure_ad_applications table (FK)",
+						Description: "Unique CloudQuery ID of msgraph_ad_applications table (FK)",
 						Type:        schema.TypeUUID,
 						Resolver:    schema.ParentIdResolver,
 					},
@@ -301,12 +300,12 @@ func AdApplications() *schema.Table {
 				},
 			},
 			{
-				Name:     "azure_ad_application_app_roles",
+				Name:     "msgraph_ad_application_app_roles",
 				Resolver: fetchAdApplicationAppRoles,
 				Columns: []schema.Column{
 					{
 						Name:        "application_cq_id",
-						Description: "Unique CloudQuery ID of azure_ad_applications table (FK)",
+						Description: "Unique CloudQuery ID of msgraph_ad_applications table (FK)",
 						Type:        schema.TypeUUID,
 						Resolver:    schema.ParentIdResolver,
 					},
@@ -342,12 +341,12 @@ func AdApplications() *schema.Table {
 				},
 			},
 			{
-				Name:     "azure_ad_application_key_credentials",
+				Name:     "msgraph_ad_application_key_credentials",
 				Resolver: fetchAdApplicationKeyCredentials,
 				Columns: []schema.Column{
 					{
 						Name:        "application_cq_id",
-						Description: "Unique CloudQuery ID of azure_ad_applications table (FK)",
+						Description: "Unique CloudQuery ID of msgraph_ad_applications table (FK)",
 						Type:        schema.TypeUUID,
 						Resolver:    schema.ParentIdResolver,
 					},
@@ -389,12 +388,12 @@ func AdApplications() *schema.Table {
 				},
 			},
 			{
-				Name:     "azure_ad_application_optional_claims_id_token",
+				Name:     "msgraph_ad_application_optional_claims_id_token",
 				Resolver: fetchAdApplicationOptionalClaimsIdTokens,
 				Columns: []schema.Column{
 					{
 						Name:        "application_cq_id",
-						Description: "Unique CloudQuery ID of azure_ad_applications table (FK)",
+						Description: "Unique CloudQuery ID of msgraph_ad_applications table (FK)",
 						Type:        schema.TypeUUID,
 						Resolver:    schema.ParentIdResolver,
 					},
@@ -417,12 +416,12 @@ func AdApplications() *schema.Table {
 				},
 			},
 			{
-				Name:     "azure_ad_application_optional_claims_access_token",
+				Name:     "msgraph_ad_application_optional_claims_access_token",
 				Resolver: fetchAdApplicationOptionalClaimsAccessTokens,
 				Columns: []schema.Column{
 					{
 						Name:        "application_cq_id",
-						Description: "Unique CloudQuery ID of azure_ad_applications table (FK)",
+						Description: "Unique CloudQuery ID of msgraph_ad_applications table (FK)",
 						Type:        schema.TypeUUID,
 						Resolver:    schema.ParentIdResolver,
 					},
@@ -445,12 +444,12 @@ func AdApplications() *schema.Table {
 				},
 			},
 			{
-				Name:     "azure_ad_application_optional_claims_saml2_token",
+				Name:     "msgraph_ad_application_optional_claims_saml2_token",
 				Resolver: fetchAdApplicationOptionalClaimsSaml2Tokens,
 				Columns: []schema.Column{
 					{
 						Name:        "application_cq_id",
-						Description: "Unique CloudQuery ID of azure_ad_applications table (FK)",
+						Description: "Unique CloudQuery ID of msgraph_ad_applications table (FK)",
 						Type:        schema.TypeUUID,
 						Resolver:    schema.ParentIdResolver,
 					},
@@ -473,12 +472,12 @@ func AdApplications() *schema.Table {
 				},
 			},
 			{
-				Name:     "azure_ad_application_password_credentials",
+				Name:     "msgraph_ad_application_password_credentials",
 				Resolver: fetchAdApplicationPasswordCredentials,
 				Columns: []schema.Column{
 					{
 						Name:        "application_cq_id",
-						Description: "Unique CloudQuery ID of azure_ad_applications table (FK)",
+						Description: "Unique CloudQuery ID of msgraph_ad_applications table (FK)",
 						Type:        schema.TypeUUID,
 						Resolver:    schema.ParentIdResolver,
 					},
@@ -515,12 +514,12 @@ func AdApplications() *schema.Table {
 				},
 			},
 			{
-				Name:     "azure_ad_application_required_resource_access",
+				Name:     "msgraph_ad_application_required_resource_access",
 				Resolver: fetchAdApplicationRequiredResourceAccesses,
 				Columns: []schema.Column{
 					{
 						Name:        "application_cq_id",
-						Description: "Unique CloudQuery ID of azure_ad_applications table (FK)",
+						Description: "Unique CloudQuery ID of msgraph_ad_applications table (FK)",
 						Type:        schema.TypeUUID,
 						Resolver:    schema.ParentIdResolver,
 					},
@@ -532,12 +531,12 @@ func AdApplications() *schema.Table {
 				},
 				Relations: []*schema.Table{
 					{
-						Name:     "azure_ad_application_required_resource_access_resource_access",
+						Name:     "msgraph_ad_application_required_resource_access_resource_access",
 						Resolver: fetchAdApplicationRequiredResourceAccessResourceAccesses,
 						Columns: []schema.Column{
 							{
 								Name:        "application_required_resource_access_cq_id",
-								Description: "Unique CloudQuery ID of azure_ad_application_required_resource_access table (FK)",
+								Description: "Unique CloudQuery ID of msgraph_ad_application_required_resource_access table (FK)",
 								Type:        schema.TypeUUID,
 								Resolver:    schema.ParentIdResolver,
 							},
@@ -555,12 +554,12 @@ func AdApplications() *schema.Table {
 				},
 			},
 			{
-				Name:     "azure_ad_application_extension_properties",
+				Name:     "msgraph_ad_application_extension_properties",
 				Resolver: fetchAdApplicationExtensionProperties,
 				Columns: []schema.Column{
 					{
 						Name:        "application_cq_id",
-						Description: "Unique CloudQuery ID of azure_ad_applications table (FK)",
+						Description: "Unique CloudQuery ID of msgraph_ad_applications table (FK)",
 						Type:        schema.TypeUUID,
 						Resolver:    schema.ParentIdResolver,
 					},
@@ -597,12 +596,12 @@ func AdApplications() *schema.Table {
 				},
 			},
 			{
-				Name:     "azure_ad_application_owners",
+				Name:     "msgraph_ad_application_owners",
 				Resolver: fetchAdApplicationOwners,
 				Columns: []schema.Column{
 					{
 						Name:        "application_cq_id",
-						Description: "Unique CloudQuery ID of azure_ad_applications table (FK)",
+						Description: "Unique CloudQuery ID of msgraph_ad_applications table (FK)",
 						Type:        schema.TypeUUID,
 						Resolver:    schema.ParentIdResolver,
 					},

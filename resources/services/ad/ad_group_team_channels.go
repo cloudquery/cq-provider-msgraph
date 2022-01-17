@@ -10,12 +10,12 @@ import (
 
 func AdGroupsTeamChannels() *schema.Table {
 	return &schema.Table{
-		Name:     "azure_ad_group_team_channels",
+		Name:     "msgraph_ad_group_team_channels",
 		Resolver: fetchAdGroupTeamChannels,
 		Columns: []schema.Column{
 			{
 				Name:        "group_cq_id",
-				Description: "Unique CloudQuery ID of azure_ad_groups table (FK)",
+				Description: "Unique CloudQuery ID of msgraph_ad_groups table (FK)",
 				Type:        schema.TypeUUID,
 				Resolver:    schema.ParentIdResolver,
 			},
@@ -44,12 +44,12 @@ func AdGroupsTeamChannels() *schema.Table {
 		},
 		Relations: []*schema.Table{
 			{
-				Name:     "azure_ad_group_team_channel_tabs",
+				Name:     "msgraph_ad_group_team_channel_tabs",
 				Resolver: fetchAdGroupTeamChannelTabs,
 				Columns: []schema.Column{
 					{
 						Name:        "group_team_channel_cq_id",
-						Description: "Unique CloudQuery ID of azure_ad_group_team_channels table (FK)",
+						Description: "Unique CloudQuery ID of msgraph_ad_group_team_channels table (FK)",
 						Type:        schema.TypeUUID,
 						Resolver:    schema.ParentIdResolver,
 					},
@@ -110,12 +110,12 @@ func AdGroupsTeamChannels() *schema.Table {
 				},
 				Relations: []*schema.Table{
 					{
-						Name:     "azure_ad_group_team_channel_tab_teams_app_app_definitions",
+						Name:     "msgraph_ad_group_team_channel_tab_teams_app_app_definitions",
 						Resolver: fetchAdGroupTeamChannelTabTeamsAppAppDefinitions,
 						Columns: []schema.Column{
 							{
 								Name:        "group_team_channel_tab_cq_id",
-								Description: "Unique CloudQuery ID of azure_ad_group_team_channel_tabs table (FK)",
+								Description: "Unique CloudQuery ID of msgraph_ad_group_team_channel_tabs table (FK)",
 								Type:        schema.TypeUUID,
 								Resolver:    schema.ParentIdResolver,
 							},

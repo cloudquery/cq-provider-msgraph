@@ -12,16 +12,16 @@ import (
 
 func AdGroups() *schema.Table {
 	return &schema.Table{
-		Name:         "azure_ad_groups",
+		Name:         "msgraph_ad_groups",
 		Resolver:     fetchAdGroups,
 		DeleteFilter: client.DeleteTenantFilter,
 		Options:      schema.TableCreationOptions{PrimaryKeys: []string{"tenant_id", "id"}},
 		Columns: []schema.Column{
 			{
 				Name:        "tenant_id",
-				Description: "Azure subscription id",
+				Description: "Azure tenant id",
 				Type:        schema.TypeString,
-				Resolver:    client.ResolveAzureTannantId,
+				Resolver:    client.ResolveTenantId,
 			},
 			{
 				Name:     "id",
@@ -300,12 +300,12 @@ func AdGroups() *schema.Table {
 		},
 		Relations: []*schema.Table{
 			{
-				Name:     "azure_ad_group_assigned_licenses",
+				Name:     "msgraph_ad_group_assigned_licenses",
 				Resolver: fetchAdGroupAssignedLicenses,
 				Columns: []schema.Column{
 					{
 						Name:        "group_cq_id",
-						Description: "Unique CloudQuery ID of azure_ad_groups table (FK)",
+						Description: "Unique CloudQuery ID of msgraph_ad_groups table (FK)",
 						Type:        schema.TypeUUID,
 						Resolver:    schema.ParentIdResolver,
 					},
@@ -321,12 +321,12 @@ func AdGroups() *schema.Table {
 				},
 			},
 			{
-				Name:     "azure_ad_group_on_premises_provisioning_errors",
+				Name:     "msgraph_ad_group_on_premises_provisioning_errors",
 				Resolver: fetchAdGroupOnPremisesProvisioningErrors,
 				Columns: []schema.Column{
 					{
 						Name:        "group_cq_id",
-						Description: "Unique CloudQuery ID of azure_ad_groups table (FK)",
+						Description: "Unique CloudQuery ID of msgraph_ad_groups table (FK)",
 						Type:        schema.TypeUUID,
 						Resolver:    schema.ParentIdResolver,
 					},
@@ -349,12 +349,12 @@ func AdGroups() *schema.Table {
 				},
 			},
 			{
-				Name:     "azure_ad_group_members",
+				Name:     "msgraph_ad_group_members",
 				Resolver: fetchAdGroupMembers,
 				Columns: []schema.Column{
 					{
 						Name:        "group_cq_id",
-						Description: "Unique CloudQuery ID of azure_ad_groups table (FK)",
+						Description: "Unique CloudQuery ID of msgraph_ad_groups table (FK)",
 						Type:        schema.TypeUUID,
 						Resolver:    schema.ParentIdResolver,
 					},
@@ -370,12 +370,12 @@ func AdGroups() *schema.Table {
 				},
 			},
 			{
-				Name:     "azure_ad_group_member_of",
+				Name:     "msgraph_ad_group_member_of",
 				Resolver: fetchAdGroupMemberOfs,
 				Columns: []schema.Column{
 					{
 						Name:        "group_cq_id",
-						Description: "Unique CloudQuery ID of azure_ad_groups table (FK)",
+						Description: "Unique CloudQuery ID of msgraph_ad_groups table (FK)",
 						Type:        schema.TypeUUID,
 						Resolver:    schema.ParentIdResolver,
 					},
@@ -391,12 +391,12 @@ func AdGroups() *schema.Table {
 				},
 			},
 			{
-				Name:     "azure_ad_group_members_with_license_errors",
+				Name:     "msgraph_ad_group_members_with_license_errors",
 				Resolver: fetchAdGroupMembersWithLicenseErrors,
 				Columns: []schema.Column{
 					{
 						Name:        "group_cq_id",
-						Description: "Unique CloudQuery ID of azure_ad_groups table (FK)",
+						Description: "Unique CloudQuery ID of msgraph_ad_groups table (FK)",
 						Type:        schema.TypeUUID,
 						Resolver:    schema.ParentIdResolver,
 					},
@@ -412,12 +412,12 @@ func AdGroups() *schema.Table {
 				},
 			},
 			{
-				Name:     "azure_ad_group_transitive_members",
+				Name:     "msgraph_ad_group_transitive_members",
 				Resolver: fetchAdGroupTransitiveMembers,
 				Columns: []schema.Column{
 					{
 						Name:        "group_cq_id",
-						Description: "Unique CloudQuery ID of azure_ad_groups table (FK)",
+						Description: "Unique CloudQuery ID of msgraph_ad_groups table (FK)",
 						Type:        schema.TypeUUID,
 						Resolver:    schema.ParentIdResolver,
 					},
@@ -433,12 +433,12 @@ func AdGroups() *schema.Table {
 				},
 			},
 			{
-				Name:     "azure_ad_group_transitive_member_of",
+				Name:     "msgraph_ad_group_transitive_member_of",
 				Resolver: fetchAdGroupTransitiveMemberOfs,
 				Columns: []schema.Column{
 					{
 						Name:        "group_cq_id",
-						Description: "Unique CloudQuery ID of azure_ad_groups table (FK)",
+						Description: "Unique CloudQuery ID of msgraph_ad_groups table (FK)",
 						Type:        schema.TypeUUID,
 						Resolver:    schema.ParentIdResolver,
 					},
@@ -454,12 +454,12 @@ func AdGroups() *schema.Table {
 				},
 			},
 			{
-				Name:     "azure_ad_group_owners",
+				Name:     "msgraph_ad_group_owners",
 				Resolver: fetchAdGroupOwners,
 				Columns: []schema.Column{
 					{
 						Name:        "group_cq_id",
-						Description: "Unique CloudQuery ID of azure_ad_groups table (FK)",
+						Description: "Unique CloudQuery ID of msgraph_ad_groups table (FK)",
 						Type:        schema.TypeUUID,
 						Resolver:    schema.ParentIdResolver,
 					},
@@ -475,12 +475,12 @@ func AdGroups() *schema.Table {
 				},
 			},
 			{
-				Name:     "azure_ad_group_settings",
+				Name:     "msgraph_ad_group_settings",
 				Resolver: fetchAdGroupSettings,
 				Columns: []schema.Column{
 					{
 						Name:        "group_cq_id",
-						Description: "Unique CloudQuery ID of azure_ad_groups table (FK)",
+						Description: "Unique CloudQuery ID of msgraph_ad_groups table (FK)",
 						Type:        schema.TypeUUID,
 						Resolver:    schema.ParentIdResolver,
 					},
@@ -506,12 +506,12 @@ func AdGroups() *schema.Table {
 				},
 			},
 			{
-				Name:     "azure_ad_group_photos",
+				Name:     "msgraph_ad_group_photos",
 				Resolver: fetchAdGroupPhotos,
 				Columns: []schema.Column{
 					{
 						Name:        "group_cq_id",
-						Description: "Unique CloudQuery ID of azure_ad_groups table (FK)",
+						Description: "Unique CloudQuery ID of msgraph_ad_groups table (FK)",
 						Type:        schema.TypeUUID,
 						Resolver:    schema.ParentIdResolver,
 					},
@@ -531,12 +531,12 @@ func AdGroups() *schema.Table {
 				},
 			},
 			{
-				Name:     "azure_ad_group_accepted_senders",
+				Name:     "msgraph_ad_group_accepted_senders",
 				Resolver: fetchAdGroupAcceptedSenders,
 				Columns: []schema.Column{
 					{
 						Name:        "group_cq_id",
-						Description: "Unique CloudQuery ID of azure_ad_groups table (FK)",
+						Description: "Unique CloudQuery ID of msgraph_ad_groups table (FK)",
 						Type:        schema.TypeUUID,
 						Resolver:    schema.ParentIdResolver,
 					},
@@ -552,12 +552,12 @@ func AdGroups() *schema.Table {
 				},
 			},
 			{
-				Name:     "azure_ad_group_rejected_senders",
+				Name:     "msgraph_ad_group_rejected_senders",
 				Resolver: fetchAdGroupRejectedSenders,
 				Columns: []schema.Column{
 					{
 						Name:        "group_cq_id",
-						Description: "Unique CloudQuery ID of azure_ad_groups table (FK)",
+						Description: "Unique CloudQuery ID of msgraph_ad_groups table (FK)",
 						Type:        schema.TypeUUID,
 						Resolver:    schema.ParentIdResolver,
 					},
@@ -573,12 +573,12 @@ func AdGroups() *schema.Table {
 				},
 			},
 			{
-				Name:     "azure_ad_group_lifecycle_policies",
+				Name:     "msgraph_ad_group_lifecycle_policies",
 				Resolver: fetchAdGroupLifecyclePolicies,
 				Columns: []schema.Column{
 					{
 						Name:        "group_cq_id",
-						Description: "Unique CloudQuery ID of azure_ad_groups table (FK)",
+						Description: "Unique CloudQuery ID of msgraph_ad_groups table (FK)",
 						Type:        schema.TypeUUID,
 						Resolver:    schema.ParentIdResolver,
 					},
@@ -602,12 +602,12 @@ func AdGroups() *schema.Table {
 				},
 			},
 			{
-				Name:     "azure_ad_group_team_channels",
+				Name:     "msgraph_ad_group_team_channels",
 				Resolver: fetchAdGroupTeamChannels,
 				Columns: []schema.Column{
 					{
 						Name:        "group_cq_id",
-						Description: "Unique CloudQuery ID of azure_ad_groups table (FK)",
+						Description: "Unique CloudQuery ID of msgraph_ad_groups table (FK)",
 						Type:        schema.TypeUUID,
 						Resolver:    schema.ParentIdResolver,
 					},
@@ -636,12 +636,12 @@ func AdGroups() *schema.Table {
 				},
 				Relations: []*schema.Table{
 					{
-						Name:     "azure_ad_group_team_channel_tabs",
+						Name:     "msgraph_ad_group_team_channel_tabs",
 						Resolver: fetchAdGroupTeamChannelTabs,
 						Columns: []schema.Column{
 							{
 								Name:        "group_team_channel_cq_id",
-								Description: "Unique CloudQuery ID of azure_ad_group_team_channels table (FK)",
+								Description: "Unique CloudQuery ID of msgraph_ad_group_team_channels table (FK)",
 								Type:        schema.TypeUUID,
 								Resolver:    schema.ParentIdResolver,
 							},
@@ -702,12 +702,12 @@ func AdGroups() *schema.Table {
 						},
 						Relations: []*schema.Table{
 							{
-								Name:     "azure_ad_group_team_channel_tab_teams_app_app_definitions",
+								Name:     "msgraph_ad_group_team_channel_tab_teams_app_app_definitions",
 								Resolver: fetchAdGroupTeamChannelTabTeamsAppAppDefinitions,
 								Columns: []schema.Column{
 									{
 										Name:        "group_team_channel_tab_cq_id",
-										Description: "Unique CloudQuery ID of azure_ad_group_team_channel_tabs table (FK)",
+										Description: "Unique CloudQuery ID of msgraph_ad_group_team_channel_tabs table (FK)",
 										Type:        schema.TypeUUID,
 										Resolver:    schema.ParentIdResolver,
 									},
@@ -736,12 +736,12 @@ func AdGroups() *schema.Table {
 				},
 			},
 			{
-				Name:     "azure_ad_group_team_installed_apps",
+				Name:     "msgraph_ad_group_team_installed_apps",
 				Resolver: fetchAdGroupTeamInstalledApps,
 				Columns: []schema.Column{
 					{
 						Name:        "group_cq_id",
-						Description: "Unique CloudQuery ID of azure_ad_groups table (FK)",
+						Description: "Unique CloudQuery ID of msgraph_ad_groups table (FK)",
 						Type:        schema.TypeUUID,
 						Resolver:    schema.ParentIdResolver,
 					},
@@ -793,12 +793,12 @@ func AdGroups() *schema.Table {
 				},
 				Relations: []*schema.Table{
 					{
-						Name:     "azure_ad_group_team_installed_app_teams_app_app_definitions",
+						Name:     "msgraph_ad_group_team_installed_app_teams_app_app_definitions",
 						Resolver: fetchAdGroupTeamInstalledAppTeamsAppAppDefinitions,
 						Columns: []schema.Column{
 							{
 								Name:        "group_team_installed_app_cq_id",
-								Description: "Unique CloudQuery ID of azure_ad_group_team_installed_apps table (FK)",
+								Description: "Unique CloudQuery ID of msgraph_ad_group_team_installed_apps table (FK)",
 								Type:        schema.TypeUUID,
 								Resolver:    schema.ParentIdResolver,
 							},
@@ -825,12 +825,12 @@ func AdGroups() *schema.Table {
 				},
 			},
 			{
-				Name:     "azure_ad_group_team_operations",
+				Name:     "msgraph_ad_group_team_operations",
 				Resolver: fetchAdGroupTeamOperations,
 				Columns: []schema.Column{
 					{
 						Name:        "group_cq_id",
-						Description: "Unique CloudQuery ID of azure_ad_groups table (FK)",
+						Description: "Unique CloudQuery ID of msgraph_ad_groups table (FK)",
 						Type:        schema.TypeUUID,
 						Resolver:    schema.ParentIdResolver,
 					},

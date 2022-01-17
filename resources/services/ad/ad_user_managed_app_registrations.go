@@ -10,12 +10,12 @@ import (
 
 func AdUserManagedAppsRegistrations() *schema.Table {
 	return &schema.Table{
-		Name:     "azure_ad_user_managed_app_registrations",
+		Name:     "msgraph_ad_user_managed_app_registrations",
 		Resolver: fetchAdUserManagedAppRegistrations,
 		Columns: []schema.Column{
 			{
 				Name:        "user_cq_id",
-				Description: "Unique CloudQuery ID of azure_ad_users table (FK)",
+				Description: "Unique CloudQuery ID of msgraph_ad_users table (FK)",
 				Type:        schema.TypeUUID,
 				Resolver:    schema.ParentIdResolver,
 			},
@@ -72,12 +72,12 @@ func AdUserManagedAppsRegistrations() *schema.Table {
 		},
 		Relations: []*schema.Table{
 			{
-				Name:     "azure_ad_user_managed_app_registration_applied_policies",
+				Name:     "msgraph_ad_user_managed_app_registration_applied_policies",
 				Resolver: fetchAdUserManagedAppRegistrationAppliedPolicies,
 				Columns: []schema.Column{
 					{
 						Name:        "user_managed_app_registration_cq_id",
-						Description: "Unique CloudQuery ID of azure_ad_user_managed_app_registrations table (FK)",
+						Description: "Unique CloudQuery ID of msgraph_ad_user_managed_app_registrations table (FK)",
 						Type:        schema.TypeUUID,
 						Resolver:    schema.ParentIdResolver,
 					},
@@ -109,12 +109,12 @@ func AdUserManagedAppsRegistrations() *schema.Table {
 				},
 			},
 			{
-				Name:     "azure_ad_user_managed_app_registration_intended_policies",
+				Name:     "msgraph_ad_user_managed_app_registration_intended_policies",
 				Resolver: fetchAdUserManagedAppRegistrationIntendedPolicies,
 				Columns: []schema.Column{
 					{
 						Name:        "user_managed_app_registration_cq_id",
-						Description: "Unique CloudQuery ID of azure_ad_user_managed_app_registrations table (FK)",
+						Description: "Unique CloudQuery ID of msgraph_ad_user_managed_app_registrations table (FK)",
 						Type:        schema.TypeUUID,
 						Resolver:    schema.ParentIdResolver,
 					},
@@ -146,12 +146,12 @@ func AdUserManagedAppsRegistrations() *schema.Table {
 				},
 			},
 			{
-				Name:     "azure_ad_user_managed_app_registration_operations",
+				Name:     "msgraph_ad_user_managed_app_registration_operations",
 				Resolver: fetchAdUserManagedAppRegistrationOperations,
 				Columns: []schema.Column{
 					{
 						Name:        "user_managed_app_registration_cq_id",
-						Description: "Unique CloudQuery ID of azure_ad_user_managed_app_registrations table (FK)",
+						Description: "Unique CloudQuery ID of msgraph_ad_user_managed_app_registrations table (FK)",
 						Type:        schema.TypeUUID,
 						Resolver:    schema.ParentIdResolver,
 					},

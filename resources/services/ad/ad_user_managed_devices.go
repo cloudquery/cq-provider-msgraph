@@ -11,12 +11,12 @@ import (
 
 func AdUserManagedDevices() *schema.Table {
 	return &schema.Table{
-		Name:     "azure_ad_user_managed_devices",
+		Name:     "msgraph_ad_user_managed_devices",
 		Resolver: fetchAdUserManagedDevices,
 		Columns: []schema.Column{
 			{
 				Name:        "user_cq_id",
-				Description: "Unique CloudQuery ID of azure_ad_users table (FK)",
+				Description: "Unique CloudQuery ID of msgraph_ad_users table (FK)",
 				Type:        schema.TypeUUID,
 				Resolver:    schema.ParentIdResolver,
 			},
@@ -80,7 +80,7 @@ func AdUserManagedDevices() *schema.Table {
 				Type: schema.TypeTimestamp,
 			},
 			{
-				Name:     "azure_ad_registered",
+				Name:     "msgraph_ad_registered",
 				Type:     schema.TypeBool,
 				Resolver: schema.PathResolver("AzureADRegistered"),
 			},
@@ -97,7 +97,7 @@ func AdUserManagedDevices() *schema.Table {
 				Type: schema.TypeString,
 			},
 			{
-				Name:     "azure_ad_device_id",
+				Name:     "msgraph_ad_device_id",
 				Type:     schema.TypeString,
 				Resolver: schema.PathResolver("AzureADDeviceID"),
 			},
@@ -399,12 +399,12 @@ func AdUserManagedDevices() *schema.Table {
 		},
 		Relations: []*schema.Table{
 			{
-				Name:     "azure_ad_user_managed_device_device_action_results",
+				Name:     "msgraph_ad_user_managed_device_device_action_results",
 				Resolver: fetchAdUserManagedDeviceDeviceActionResults,
 				Columns: []schema.Column{
 					{
 						Name:        "user_managed_device_cq_id",
-						Description: "Unique CloudQuery ID of azure_ad_user_managed_devices table (FK)",
+						Description: "Unique CloudQuery ID of msgraph_ad_user_managed_devices table (FK)",
 						Type:        schema.TypeUUID,
 						Resolver:    schema.ParentIdResolver,
 					},
@@ -427,12 +427,12 @@ func AdUserManagedDevices() *schema.Table {
 				},
 			},
 			{
-				Name:     "azure_ad_user_managed_device_device_configuration_states",
+				Name:     "msgraph_ad_user_managed_device_device_configuration_states",
 				Resolver: fetchAdUserManagedDeviceDeviceConfigurationStates,
 				Columns: []schema.Column{
 					{
 						Name:        "user_managed_device_cq_id",
-						Description: "Unique CloudQuery ID of azure_ad_user_managed_devices table (FK)",
+						Description: "Unique CloudQuery ID of msgraph_ad_user_managed_devices table (FK)",
 						Type:        schema.TypeUUID,
 						Resolver:    schema.ParentIdResolver,
 					},
@@ -469,12 +469,12 @@ func AdUserManagedDevices() *schema.Table {
 				},
 			},
 			{
-				Name:     "azure_ad_user_managed_device_device_compliance_policy_states",
+				Name:     "msgraph_ad_user_managed_device_device_compliance_policy_states",
 				Resolver: fetchAdUserManagedDeviceDeviceCompliancePolicyStates,
 				Columns: []schema.Column{
 					{
 						Name:        "user_managed_device_cq_id",
-						Description: "Unique CloudQuery ID of azure_ad_user_managed_devices table (FK)",
+						Description: "Unique CloudQuery ID of msgraph_ad_user_managed_devices table (FK)",
 						Type:        schema.TypeUUID,
 						Resolver:    schema.ParentIdResolver,
 					},

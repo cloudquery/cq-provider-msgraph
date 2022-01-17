@@ -193,7 +193,7 @@ func TestADGroups(t *testing.T) {
 			if err != nil {
 				return nil, err
 			}
-			c := client.NewAzureClient(logging.New(&hclog.LoggerOptions{
+			c := client.NewMsgraphClient(logging.New(&hclog.LoggerOptions{
 				Level: hclog.Warn,
 			}), client.TestTenantId, graph)
 			return c, nil

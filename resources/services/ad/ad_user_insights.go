@@ -10,12 +10,12 @@ import (
 
 func AdUserInsightsTrending() *schema.Table {
 	return &schema.Table{
-		Name:     "azure_ad_user_insights_trending",
+		Name:     "msgraph_ad_user_insights_trending",
 		Resolver: fetchAdUserInsightsTrendings,
 		Columns: []schema.Column{
 			{
 				Name:        "user_cq_id",
-				Description: "Unique CloudQuery ID of azure_ad_users table (FK)",
+				Description: "Unique CloudQuery ID of msgraph_ad_users table (FK)",
 				Type:        schema.TypeUUID,
 				Resolver:    schema.ParentIdResolver,
 			},
@@ -98,12 +98,12 @@ func AdUserInsightsTrending() *schema.Table {
 
 func AdUserInsightsShared() *schema.Table {
 	return &schema.Table{
-		Name:     "azure_ad_user_insights_shared",
+		Name:     "msgraph_ad_user_insights_shared",
 		Resolver: fetchAdUserInsightsShareds,
 		Columns: []schema.Column{
 			{
 				Name:        "user_cq_id",
-				Description: "Unique CloudQuery ID of azure_ad_users table (FK)",
+				Description: "Unique CloudQuery ID of msgraph_ad_users table (FK)",
 				Type:        schema.TypeUUID,
 				Resolver:    schema.ParentIdResolver,
 			},
@@ -225,12 +225,12 @@ func AdUserInsightsShared() *schema.Table {
 		},
 		Relations: []*schema.Table{
 			{
-				Name:     "azure_ad_user_insights_shared_sharing_history",
+				Name:     "msgraph_ad_user_insights_shared_sharing_history",
 				Resolver: fetchAdUserInsightsSharedSharingHistories,
 				Columns: []schema.Column{
 					{
 						Name:        "user_insights_shared_cq_id",
-						Description: "Unique CloudQuery ID of azure_ad_user_insights_shared table (FK)",
+						Description: "Unique CloudQuery ID of msgraph_ad_user_insights_shared table (FK)",
 						Type:        schema.TypeUUID,
 						Resolver:    schema.ParentIdResolver,
 					},
@@ -283,12 +283,12 @@ func AdUserInsightsShared() *schema.Table {
 }
 func AdUserInsightsUsed() *schema.Table {
 	return &schema.Table{
-		Name:     "azure_ad_user_insights_used",
+		Name:     "msgraph_ad_user_insights_used",
 		Resolver: fetchAdUserInsightsUseds,
 		Columns: []schema.Column{
 			{
 				Name:        "user_cq_id",
-				Description: "Unique CloudQuery ID of azure_ad_users table (FK)",
+				Description: "Unique CloudQuery ID of msgraph_ad_users table (FK)",
 				Type:        schema.TypeUUID,
 				Resolver:    schema.ParentIdResolver,
 			},

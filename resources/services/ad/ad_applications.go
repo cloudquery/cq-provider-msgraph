@@ -9,7 +9,7 @@ import (
 	msgraph "github.com/yaegashi/msgraph.go/v1.0"
 )
 
-func AdApplications() *schema.Table {
+func Applications() *schema.Table {
 	return &schema.Table{
 		Name:         "msgraph_ad_applications",
 		Resolver:     fetchAdApplications,
@@ -625,7 +625,7 @@ func AdApplications() *schema.Table {
 // ====================================================================================================================
 
 func fetchAdApplications(ctx context.Context, meta schema.ClientMeta, parent *schema.Resource, res chan interface{}) error {
-	svc := meta.(*client.Client).Client()
+	svc := meta.(*client.Client).Graph
 	response, err := svc.Applications().Request().Get(ctx)
 	if err != nil {
 		return err

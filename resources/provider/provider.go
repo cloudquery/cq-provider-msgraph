@@ -12,7 +12,7 @@ import (
 )
 
 var (
-	//	//go:embed migrations/*.sql //todo uncomment on first migration
+	//	//go:embed migrations/*.sql //todo uncomment when first migration file added
 	azureMigrations embed.FS
 	Version         = "Development"
 )
@@ -24,9 +24,9 @@ func Provider() *provider.Provider {
 		Configure:  client.Configure,
 		Migrations: azureMigrations,
 		ResourceMap: map[string]*schema.Table{
-			"ad.applications": ad.AdApplications(),
-			"ad.groups":       ad.AdGroups(),
-			"ad.users":        ad.AdUsers(),
+			"ad.applications": ad.Applications(),
+			"ad.groups":       ad.Groups(),
+			"ad.users":        ad.Users(),
 		},
 		Config: func() provider.Config {
 			return &client.Config{}

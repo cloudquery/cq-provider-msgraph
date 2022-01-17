@@ -184,7 +184,7 @@ func fakeConversation(t *testing.T) msgraph.Conversation {
 
 func TestADGroups(t *testing.T) {
 	resource := providertest.ResourceTestData{
-		Table: ad.AdGroups(),
+		Table:  ad.Groups(),
 		Config: client.Config{
 			//Subscriptions: []string{"testProject"},
 		},

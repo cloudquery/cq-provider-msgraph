@@ -139,7 +139,7 @@ func fakeMailFolder(t *testing.T) *msgraph.MailFolder {
 
 func TestADUsers(t *testing.T) {
 	resource := providertest.ResourceTestData{
-		Table:  ad.AdUsers(),
+		Table:  ad.Users(),
 		Config: client.Config{},
 		Configure: func(logger hclog.Logger, _ interface{}) (schema.ClientMeta, error) {
 			graph, err := createADUsersTestServer(t)

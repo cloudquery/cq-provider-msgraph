@@ -2,6 +2,7 @@ package client
 
 import (
 	"context"
+
 	"github.com/Azure/go-autorest/autorest/azure/auth"
 	"github.com/cloudquery/cq-provider-sdk/provider/schema"
 	"github.com/hashicorp/go-hclog"
@@ -11,7 +12,7 @@ import (
 )
 
 type Client struct {
-	graph    *msgraph.GraphServiceRequestBuilder
+	Graph    *msgraph.GraphServiceRequestBuilder
 	logger   hclog.Logger
 	TenantId string
 }
@@ -20,17 +21,12 @@ func NewMsgraphClient(log hclog.Logger, tenantId string, graph *msgraph.GraphSer
 	return &Client{
 		logger:   log,
 		TenantId: tenantId,
-		graph:    graph,
+		Graph:    graph,
 	}
 }
 
 func (c Client) Logger() hclog.Logger {
 	return c.logger
-}
-
-// Client return msgraph client
-func (c Client) Client() *msgraph.GraphServiceRequestBuilder {
-	return c.graph
 }
 
 func Configure(logger hclog.Logger, config interface{}) (schema.ClientMeta, error) {

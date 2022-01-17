@@ -9,7 +9,7 @@ builds:
       - GO111MODULE=on
     ldflags:
     # CHANGEME
-      - -s -w -X <REPLACE_WITH_MODULE_PATH>/resources.Version={{.Version}}
+      - -s -w -X github.com/cloudquery/cq-provider-msgraph/resources/provider.Version={{.Version}}
     goos:
       - windows
       - linux

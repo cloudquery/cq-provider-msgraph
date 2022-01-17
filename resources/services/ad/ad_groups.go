@@ -10,7 +10,7 @@ import (
 	msgraph "github.com/yaegashi/msgraph.go/v1.0"
 )
 
-func AdGroups() *schema.Table {
+func Groups() *schema.Table {
 	return &schema.Table{
 		Name:         "msgraph_ad_groups",
 		Resolver:     fetchAdGroups,
@@ -889,7 +889,7 @@ func AdGroups() *schema.Table {
 // ====================================================================================================================
 
 func fetchAdGroups(ctx context.Context, meta schema.ClientMeta, parent *schema.Resource, res chan interface{}) error {
-	svc := meta.(*client.Client).Client()
+	svc := meta.(*client.Client).Graph
 	response, err := svc.Groups().Request().Get(ctx)
 	if err != nil {
 		return err

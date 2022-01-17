@@ -60,7 +60,7 @@ func createADApplicationsTestServer(t *testing.T) (*msgraph.GraphServiceRequestB
 
 func TestADApplications(t *testing.T) {
 	resource := providertest.ResourceTestData{
-		Table: ad.AdApplications(),
+		Table:  ad.Applications(),
 		Config: client.Config{
 			//Subscriptions: []string{"testProject"},
 		},

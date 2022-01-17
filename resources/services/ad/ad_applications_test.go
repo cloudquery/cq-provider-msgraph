@@ -2,13 +2,14 @@ package ad_test
 
 import (
 	"encoding/json"
-	"github.com/cloudquery/cq-provider-msgraph/resources/provider"
-	"github.com/cloudquery/cq-provider-msgraph/resources/services/ad"
-	"github.com/cloudquery/faker/v3"
 	"net/http"
 	"net/http/httptest"
 	"net/url"
 	"testing"
+
+	"github.com/cloudquery/cq-provider-msgraph/resources/provider"
+	"github.com/cloudquery/cq-provider-msgraph/resources/services/ad"
+	"github.com/cloudquery/faker/v3"
 
 	"github.com/cloudquery/cq-provider-msgraph/client"
 	"github.com/cloudquery/cq-provider-sdk/logging"
@@ -21,7 +22,9 @@ import (
 
 func createADApplicationsTestServer(t *testing.T) (*msgraph.GraphServiceRequestBuilder, error) {
 	var application msgraph.Application
-	faker.FakeData(&application)
+	if err := faker.FakeData(&application); err != nil {
+		t.Fatal(err)
+	}
 	mux := httprouter.New()
 	mux.GET("/v1.0/applications", func(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 		groups := []msgraph.Application{

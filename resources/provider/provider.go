@@ -2,6 +2,7 @@ package provider
 
 import (
 	"embed"
+
 	"github.com/cloudquery/cq-provider-msgraph/resources/services/ad"
 
 	// CHANGEME: change the following to your own package

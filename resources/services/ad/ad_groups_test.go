@@ -2,12 +2,13 @@ package ad_test
 
 import (
 	"encoding/json"
-	"github.com/cloudquery/cq-provider-msgraph/resources/provider"
-	"github.com/cloudquery/cq-provider-msgraph/resources/services/ad"
 	"net/http"
 	"net/http/httptest"
 	"net/url"
 	"testing"
+
+	"github.com/cloudquery/cq-provider-msgraph/resources/provider"
+	"github.com/cloudquery/cq-provider-msgraph/resources/services/ad"
 
 	"github.com/cloudquery/faker/v3"
 
